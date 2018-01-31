@@ -1,0 +1,2 @@
+# CT-Nurse-Training-Course-web-App
+The Connecticut Hospital Association’s Healthcare Educators Group has asked to build a web application training module for any student completing an academic clinical assignment (RN, LPN, PT, OT, etc.) within a Connecticut hospital. Before the student begins their assignment, they must take a training course and pass a test based on the training content.  Currently the training course is done with a PDF file and a handwritten test. This web application will digitize and automate this training course. 
