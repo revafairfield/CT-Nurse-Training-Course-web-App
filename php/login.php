@@ -7,9 +7,9 @@
    if (isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['password'])) {
    $uname = $_POST['email'];
    $pwd = $_POST['password'];
-  
+
    $sql = "Select * from user where uid='$uname' AND pwd='$pwd'";
-   $result = mysqli_query($conn,$sql);   
+   $result = mysqli_query($conn,$sql);
 
    if(!$row = mysqli_fetch_assoc($result)){
      $msg = 'Wrong username or password';
@@ -21,7 +21,7 @@
      $_SESSION['username'] = $_POST['username'];
        $msg = 'You have entered valid use name and password';
      $messageClass = "alert alert-success";
-   } 
+   }
 } else {
  $messageClass = "none";
  $msg = "";
@@ -81,7 +81,7 @@
   </div>
 <div class="row-fluid padding-top">
   <div class="container-padding border border-radius">
-    <p>First time taking the course?&nbsp;<a href="">Create an account &rarr;</a></p>
+    <p class="no-margin">First time taking the course?&nbsp;<a href="">Create an account &rarr;</a></p>
   </div>
 </div>
 </div>
