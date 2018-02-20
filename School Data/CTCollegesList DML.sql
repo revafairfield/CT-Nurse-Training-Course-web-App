@@ -1,5 +1,5 @@
 USE 'NursingTest';
-
+--database name and table name may need to be changed
 
 INSERT INTO 'Schools' ('SchoolName') VALUES
 ('Albertus Magnus College, CT'),
@@ -48,4 +48,3 @@ INSERT INTO 'Schools' ('SchoolName') VALUES
 ('Western Connecticut State University, CT'),
 ('Yale University, CT'),
 ('Other');
-
