@@ -81,7 +81,7 @@
   </div>
 <div class="row-fluid padding-top">
   <div class="container-padding border border-radius">
-    <p class="no-margin">First time taking the course?&nbsp;<a href="">Create an account &rarr;</a></p>
+    <p>First time taking the course?&nbsp;<a href="registration.php">Create an account &rarr;</a></p>
   </div>
 </div>
 </div>
