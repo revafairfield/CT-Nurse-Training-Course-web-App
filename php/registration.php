@@ -152,7 +152,7 @@ function CheckCollege(val){
   
 <div class="row-fluid padding-top">
   <div class="container-padding border border-radius">
-    <p>Already Registered?&nbsp;<a href="index.html">Login &rarr;</a></p>
+    <p>Already Registered?&nbsp;<a href="login.php">Login &rarr;</a></p>
   </div>
 </div>
   
