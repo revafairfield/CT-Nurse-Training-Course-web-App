@@ -6,10 +6,11 @@
       // username and password sent from form 
       $univflag = "Y";
 	   
-	     $schoolid = $ctcollege;
-		 $univflag = "N";
-		 $universityname ="";
-	  }
+     if($ctcollege != 46) {
+       $schoolid = $ctcollege;
+       $univflag = "N";
+       $universityname ="";
+     }
 	 
 	  $sql = "INSERT INTO `user` (`email`, `password`, `firstName`, `lastName`, `securityQuestion`, `securityAnswer`, `graduationYear`, `isActive`, `createdBy`, `createdOn`, `updatedBy`, `updatedOn`, `universityFlag`, `otherUniversity`, `schoolID`) 
 	          values ('$email', '$password', '$firstname', '$lastname', '$securityquestion', '$securityanswer', '$graduationyear', 'y' ,'$firstname', NOW(), '$firstname', NOW(), '$univflag', '$universityname','$schoolid')";
@@ -24,7 +25,6 @@
     $securityquestion = mysqli_real_escape_string($dbconn,$_POST['securityquestion']);
     $securityanswer = mysqli_real_escape_string($dbconn,$_POST['securityanswer']);
     $ctcollege = mysqli_real_escape_string($dbconn,$_POST['ctlist']);
-    if($ctcollege != 46){
       $result = mysqli_query($dbconn,$sql);
         
       header("location: login.php");
