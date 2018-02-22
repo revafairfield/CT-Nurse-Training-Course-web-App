@@ -6,15 +6,6 @@
       // username and password sent from form 
       $univflag = "Y";
 	  $schoolid = 53;
-	  $firstname = mysqli_real_escape_string($db,$_POST['firstname']);
-    $lastname = mysqli_real_escape_string($db,$_POST['lastname']); 
-	  $email = mysqli_real_escape_string($db,$_POST['email']);
-	  $password = mysqli_real_escape_string($db,$_POST['password']);
-	  $universityname = mysqli_real_escape_string($db,$_POST['universityname']);
-	  $graduationyear = mysqli_real_escape_string($db,$_POST['graduationyear']);
-	  $securityquestion = mysqli_real_escape_string($db,$_POST['securityquestion']);
-	  $securityanswer = mysqli_real_escape_string($db,$_POST['securityanswer']);
-	  $ctcollege = mysqli_real_escape_string($db,$_POST['ctlist']);
 	   
 	  if($ctcollege != 53){
 	     $schoolid = $ctcollege;
@@ -25,12 +16,21 @@
 	  $sql = "INSERT INTO `user` (`email`, `password`, `firstName`, `lastName`, `securityQuestion`, `securityAnswer`, `graduationYear`, `isActive`, `createdBy`, `createdOn`, `updatedBy`, `updatedOn`, `universityFlag`, `otherUniversity`, `schoolID`) 
 	          values ('$email', '$password', '$firstname', '$lastname', '$securityquestion', '$securityanswer', '$graduationyear', 'y' ,'$firstname', NOW(), '$firstname', NOW(), '$univflag', '$universityname','$schoolid')";
 
-      $result = mysqli_query($db,$sql);
 			  
       header("location: welcome.php");
+    $firstname = mysqli_real_escape_string($dbconn,$_POST['firstname']);
+      $lastname = mysqli_real_escape_string($dbconn,$_POST['lastname']); 
+    $email = mysqli_real_escape_string($dbconn,$_POST['email']);
+    $password = mysqli_real_escape_string($dbconn,$_POST['password']);
+    $universityname = mysqli_real_escape_string($dbconn,$_POST['universityname']);
+    $graduationyear = mysqli_real_escape_string($dbconn,$_POST['graduationyear']);
+    $securityquestion = mysqli_real_escape_string($dbconn,$_POST['securityquestion']);
+    $securityanswer = mysqli_real_escape_string($dbconn,$_POST['securityanswer']);
+    $ctcollege = mysqli_real_escape_string($dbconn,$_POST['ctlist']);
+      $result = mysqli_query($dbconn,$sql);
    }else{
       $query_ctschools = "SELECT * FROM `school`";
-      $ct_schools = mysqli_query($db,$query_ctschools);
+      $ct_schools = mysqli_query($dbconn,$query_ctschools);
    }
 ?>
 

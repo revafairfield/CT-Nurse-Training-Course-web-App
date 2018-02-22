@@ -9,7 +9,7 @@
    $pwd = $_POST['password'];
 
    $sql = "Select * from user where uid='$uname' AND pwd='$pwd'";
-   $result = mysqli_query($conn,$sql);
+   $result = mysqli_query($dbconn,$sql);   
 
    if(!$row = mysqli_fetch_assoc($result)){
      $msg = 'Wrong username or password';
