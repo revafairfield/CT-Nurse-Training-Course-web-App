@@ -126,14 +126,14 @@ function CheckCollege(val){
   <div class="form-group">
     <div class="col-sm-12">
       <label for="sq" class="control-label">Securtiy Question</label>
-      <input type="text" class="form-control" name = "sq" id="year" placeholder="">
+      <input type="text" class="form-control" name = "sq" id="securityquestion" placeholder="">
     </div>
   </div>
   
    <div class="form-group">
     <div class="col-sm-12">
       <label for="sa" class="control-label">Security Answer</label>
-      <input type="text" class="form-control" name = "securityanswer" id="sa" placeholder="">
+      <input type="text" class="form-control" name = "securityanswer" id="securityanswer" placeholder="">
     </div>
   </div> 
   
