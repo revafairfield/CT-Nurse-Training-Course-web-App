@@ -7,8 +7,8 @@
    if (isset($_POST['signin']) && !empty($_POST['email']) && !empty($_POST['password'])) {
    $uname = $_POST['email'];
    $pwd = $_POST['password'];
-
-   $sql = "Select * from user where uid='$uname' AND pwd='$pwd'";
+  
+   $sql = "Select * from user where email='$uname' AND password='$pwd'";
    $result = mysqli_query($dbconn,$sql);   
 
    if(!$row = mysqli_fetch_assoc($result)){
@@ -18,7 +18,7 @@
    } else {
      $_SESSION['valid'] = true;
      $_SESSION['timeout'] = time();
-     $_SESSION['username'] = $_POST['username'];
+     $_SESSION['email'] = $_POST['email'];
        $msg = 'You have entered valid use name and password';
      $messageClass = "alert alert-success";
    }
