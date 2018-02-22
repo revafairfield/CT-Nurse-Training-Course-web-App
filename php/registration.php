@@ -14,8 +14,6 @@
 	  $sql = "INSERT INTO `user` (`email`, `password`, `firstName`, `lastName`, `securityQuestion`, `securityAnswer`, `graduationYear`, `isActive`, `createdBy`, `createdOn`, `updatedBy`, `updatedOn`, `universityFlag`, `otherUniversity`, `schoolID`) 
 	          values ('$email', '$password', '$firstname', '$lastname', '$securityquestion', '$securityanswer', '$graduationyear', 'y' ,'$firstname', NOW(), '$firstname', NOW(), '$univflag', '$universityname','$schoolid')";
 
-			  
-      header("location: welcome.php");
     $schoolid = 46;
     $firstname = mysqli_real_escape_string($dbconn,$_POST['firstname']);
       $lastname = mysqli_real_escape_string($dbconn,$_POST['lastname']); 
@@ -28,6 +26,8 @@
     $ctcollege = mysqli_real_escape_string($dbconn,$_POST['ctlist']);
     if($ctcollege != 46){
       $result = mysqli_query($dbconn,$sql);
+        
+      header("location: login.php");
    }else{
       $query_ctschools = "SELECT * FROM `school`";
       $ct_schools = mysqli_query($dbconn,$query_ctschools);
