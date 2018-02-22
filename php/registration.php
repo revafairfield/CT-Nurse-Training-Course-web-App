@@ -5,9 +5,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       $univflag = "Y";
-	  $schoolid = 53;
 	   
-	  if($ctcollege != 53){
 	     $schoolid = $ctcollege;
 		 $univflag = "N";
 		 $universityname ="";
@@ -18,6 +16,7 @@
 
 			  
       header("location: welcome.php");
+    $schoolid = 46;
     $firstname = mysqli_real_escape_string($dbconn,$_POST['firstname']);
       $lastname = mysqli_real_escape_string($dbconn,$_POST['lastname']); 
     $email = mysqli_real_escape_string($dbconn,$_POST['email']);
@@ -27,6 +26,7 @@
     $securityquestion = mysqli_real_escape_string($dbconn,$_POST['securityquestion']);
     $securityanswer = mysqli_real_escape_string($dbconn,$_POST['securityanswer']);
     $ctcollege = mysqli_real_escape_string($dbconn,$_POST['ctlist']);
+    if($ctcollege != 46){
       $result = mysqli_query($dbconn,$sql);
    }else{
       $query_ctschools = "SELECT * FROM `school`";
@@ -54,7 +54,7 @@
 <script type="text/javascript">
 function CheckCollege(val){
  var element=document.getElementById('college');
- if(val==53)
+ if(val==46)
    element.style.display='block';
  else  
    element.style.display='none';
