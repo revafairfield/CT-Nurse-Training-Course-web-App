@@ -1,7 +1,9 @@
 <?php
    include("dbh.php");
    session_start();
-   
+   $query_ctschools = "SELECT * FROM `school`";
+   $ct_schools = mysqli_query($dbconn,$query_ctschools);
+	  
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       $univflag = "Y";  
@@ -12,11 +14,10 @@
     $password = mysqli_real_escape_string($dbconn,$_POST['password']);
     $universityname = mysqli_real_escape_string($dbconn,$_POST['universityname']);
     $graduationyear = mysqli_real_escape_string($dbconn,$_POST['graduationyear']);
-    $securityquestion = mysqli_real_escape_string($dbconn,$_POST['securityquestion']);
+    $securityquestion = mysqli_real_escape_string($dbconn,$_POST['security_question']);
     $securityanswer = mysqli_real_escape_string($dbconn,$_POST['securityanswer']);
     $ctcollege = mysqli_real_escape_string($dbconn,$_POST['ctlist']);
-      header("location: login.php");
-      
+           
 
       if($ctcollege != 46) {
        $schoolid = $ctcollege;
@@ -26,10 +27,12 @@
         $sql = "INSERT INTO `user` (`email`, `password`, `firstName`, `lastName`, `securityQuestion`, `securityAnswer`, `graduationYear`, `isActive`, `createdBy`, `createdOn`, `updatedBy`, `updatedOn`, `universityFlag`, `otherUniversity`, `schoolID`) 
             values ('$email', '$password', '$firstname', '$lastname', '$securityquestion', '$securityanswer', '$graduationyear', 'y' ,'$firstname', NOW(), '$firstname', NOW(), '$univflag', '$universityname','$schoolid')";
 
-        $result = mysqli_query($dbconn,$sql);
-   }else{
-      $query_ctschools = "SELECT * FROM `school`";
-      $ct_schools = mysqli_query($dbconn,$query_ctschools);
+     if (!mysqli_query($dbconn,$sql))
+     {
+        echo("Error description: " . mysqli_error($dbconn));
+     }else{
+	    header("location: welcome.php");
+	 }
    }
 ?>
 
@@ -48,8 +51,8 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
 
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/custom.css">
 <script type="text/javascript">
 function CheckCollege(val){
  var element=document.getElementById('college');
@@ -57,6 +60,16 @@ function CheckCollege(val){
    element.style.display='block';
  else  
    element.style.display='none';
+}
+
+
+function validatePassword() {
+    var password = document.forms["reg"]["password"].value;
+	var confirm_password = document.forms["reg"]["cpassword"].value;
+    if (password != confirm_password) {
+        alert("password mismatch");
+        return false;
+    }
 }
 
 </script> 
@@ -67,38 +80,45 @@ function CheckCollege(val){
 
 <div class="container-fluid login-container">
   <div class="row-fluid">
-      <img class="logo center-block" src="/images/ct-assoc-logo.png"/>
+      <img class="logo center-block" src="../images/ct-assoc-logo.png"/>
       <h1 class="text-center">Nursing Test Registration</h1>
   </div>
 
   <div class="row-fluid">
   <div class="gray-bkgd container-padding border border-radius">
 
-<form class="form-horizontal" action = "" method = "post">
+<form name= "reg" class="form-horizontal" action = "" onSubmit="return validatePassword()" method = "post">
   <div class="form-group">
     <div class="col-sm-12">
       <label for="fname" class="control-label">First Name</label>
-      <input type="text" class="form-control" name = "firstname" id="fname" placeholder="First Name">
+      <input type="text" class="form-control" name = "firstname" id="fname" placeholder="First Name" required>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-12">
       <label for="lname" class="control-label">Last Name</label>
-      <input type="text" class="form-control" name = "lastname" id="lname" placeholder="Last Name">
+      <input type="text" class="form-control" name = "lastname" id="lname" placeholder="Last Name" required>
     </div>
   </div>
   
   <div class="form-group">
     <div class="col-sm-12">
       <label for="email" class="control-label">Email</label>
-      <input type="text" class="form-control" name = "email" id="email" placeholder="Email">
+      <input type="email" class="form-control" name = "email" id="email" placeholder="Email" required>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-12">
       <label for="pwd" class="control-label">Password</label>
-      <input type="password" class="form-control" name = "password" id="pwd" placeholder="Password">
+      <input type="password" class="form-control" name = "password" id="pwd" placeholder="Password" required>
+    </div>
+  </div>
+  
+    <div class="form-group">
+    <div class="col-sm-12">
+      <label for="cpwd" class="control-label">Confirm Password</label>
+      <input type="password" class="form-control" name = "cpassword" id="cpwd" placeholder="Password" required>
     </div>
   </div>
   
@@ -118,21 +138,29 @@ function CheckCollege(val){
   <div class="form-group">
     <div class="col-sm-12">
       <label for="yog" class="control-label">Graduation Year</label>
-      <input type="text" class="form-control" name = "graduationyear" id="year" placeholder="Year">
+      <input type="number" class="form-control" name = "graduationyear" id="year" placeholder="Year" min = 1990 required>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-12">
       <label for="sq" class="control-label">Securtiy Question</label>
-      <input type="text" class="form-control" name = "sq" id="securityquestion" placeholder="">
+	  <select class="form-control" name = "security_question" id="year" placeholder="" > <br>
+		<option value="What was the make and model of your first car?">What was the make and model of your first car?</option>
+		<option value="What is the first name of your best friend in high school?">What is the first name of your best friend in high school?</option>
+		<option value="In what city did you meet your spouse/boy friend?">In what city did you meet your spouse/boy friend?</option>
+		<option value="What was the name of your elementary / primary school?">What was the name of your elementary / primary school?</option>
+		<option value="What was your childhood nickname?">What was your childhood nickname?</option>
+		<option value="What was your mother's maiden name?">What was your mother's maiden name?</option>
+		<option value="What was your favourite sport?">What was your favourite sport? </option>
+	   </select>
     </div>
   </div>
   
    <div class="form-group">
     <div class="col-sm-12">
       <label for="sa" class="control-label">Security Answer</label>
-      <input type="text" class="form-control" name = "securityanswer" id="securityanswer" placeholder="">
+      <input type="text" class="form-control" name = "securityanswer" id="securityanswer" placeholder="" required>
     </div>
   </div> 
   
