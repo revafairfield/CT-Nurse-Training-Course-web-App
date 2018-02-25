@@ -41,15 +41,15 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
 
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/custom.css">
 </head>
 
 <body>
 
 <div class="container login-container">
   <div class="row-fluid">
-      <img class="logo center-block" src="/images/ct-assoc-logo.png"/>
+      <img class="logo center-block" src="../images/ct-assoc-logo.png"/>
       <h1 class="text-center">Nursing Online Training Application</h1>
   </div>
 
