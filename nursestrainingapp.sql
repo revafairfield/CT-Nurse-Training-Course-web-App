@@ -21,7 +21,10 @@ SET time_zone = "+00:00";
 --
 -- Database: `nursestrainingapp`
 --
+DROP DATABASE IF EXISTS NursesTrainingApp;
+CREATE DATABASE IF NOT EXISTS NursesTrainingApp;
 
+use `NursesTrainingApp`;
 -- --------------------------------------------------------
 
 --
@@ -210,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `test_question` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `userID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
