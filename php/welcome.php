@@ -28,7 +28,7 @@
   <div class="row-fluid">
   <div class="gray-bkgd container-padding border border-radius">
 
-    <b><font color = "blue" size = "3">Registration Successful</font></b>
+    <b><font color = "blue" size = "3">Registration Successful.. welcome to CT online training</font></b>
 
   </div>
   </div>
